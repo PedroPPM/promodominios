@@ -1,7 +1,7 @@
 # Use a imagem oficial do PHP com Apache
 FROM php:8.2-apache
 
-# Defina o nome do servidor com o domínio completo
+# Defina o nome do servidor diretamente no Dockerfile
 RUN echo "ServerName promodominios-production.up.railway.app" >> /etc/apache2/apache2.conf
 
 # Copie o código da aplicação para o diretório /var/www/html
@@ -14,4 +14,4 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 EXPOSE 80
 
 # Comando para iniciar o Apache
-CMD ["apache2-foreground"]
+CMD ["apache2 -D FOREGROUND"]

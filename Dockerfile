@@ -14,4 +14,4 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 EXPOSE 80
 
 # Comando para iniciar o Apache
-CMD ["apache2 -D FOREGROUND"]
+CMD ["apache2-foreground"]

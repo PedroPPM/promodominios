@@ -1,14 +1,20 @@
-# Use a imagem oficial do PHP-FPM
-FROM php:8.2-fpm
+# Use uma imagem base do PHP
+FROM php:8.1-apache
 
-# Copie o código da aplicação para o diretório /var/www/html
+# Instale o sudo
+RUN apt-get update && apt-get install -y sudo
+
+# Copie os arquivos do seu projeto para o diretório /var/www/html no container
 COPY . /var/www/html/
 
-# Instale dependências do PHP (se necessário)
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+# Copie o script start-app.sh para o container
+COPY start-app.sh /usr/local/bin/start-app.sh
 
-# Exponha a porta 9000 para o PHP-FPM
-EXPOSE 9000
+# Torne o script executável
+RUN chmod +x /usr/local/bin/start-app.sh
 
-# Defina o comando padrão para iniciar o PHP-FPM
-CMD ["php-fpm"]
+# Exponha a porta 80 para acesso ao servidor web
+EXPOSE 80
+
+# Defina o ponto de entrada para o script start-app.sh
+ENTRYPOINT ["start-app.sh"]

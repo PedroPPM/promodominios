@@ -2,7 +2,7 @@
 FROM php:8.2-apache
 
 # Defina o nome do servidor diretamente no Dockerfile
-RUN echo "ServerName promodominios-production-0ed0.up.railway.app >> /etc/apache2/apache2.conf
+RUN echo "ServerName promodominios-production-0ed0.up.railway.app" >> /etc/apache2/apache2.conf
 
 # Copie o código da aplicação para o diretório /var/www/html
 COPY . /var/www/html/

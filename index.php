@@ -23,6 +23,11 @@
 
   <div class="header">
 
+    <?php
+phpinfo();
+?>
+
+
   <?php include 'includes/top.php' ?>
 
     <div class="domains">

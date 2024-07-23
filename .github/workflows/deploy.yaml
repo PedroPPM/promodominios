@@ -1,0 +1,19 @@
+name: Deploy Promo Dominios
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  pipeline:
+    name: Deploy Promo Dominios
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH Remote Commands
+        uses: nekiro/ssh-job@v1.0.5
+        with:
+          host: ${{ vars.APP_IP_ADDRESS }}
+          user: ${{ vars.APP_HOST_USER }}
+          key: ${{ secrets.APP_RSA_KEY }}
+          command: |
+            bash /deploy.sh
